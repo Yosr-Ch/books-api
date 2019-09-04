@@ -1,0 +1,20 @@
+version: "2"
+services:
+  app:
+    build: .
+    links:
+      - db
+    ports:
+      - "8080:8080"
+    volumes:
+      - .:/app
+    environment:
+      FLASK_DEBUG: 1
+  db:
+    image: mysql:5.7
+    ports:
+      - "32000:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - ./db:/docker-entrypoint-initdb.d/:ro
