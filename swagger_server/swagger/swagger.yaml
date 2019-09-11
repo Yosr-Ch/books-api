@@ -69,42 +69,6 @@ paths:
           description: Invalid input
           content: {}
       x-openapi-router-controller: swagger_server.controllers.book_controller
-  /book/findByStatus:
-    get:
-      tags:
-      - book
-      summary: Finds Books by status
-      description: Multiple status values can be provided with comma separated strings
-      operationId: find_books_by_status
-      parameters:
-      - name: status
-        in: query
-        description: Status values that need to be considered for filter
-        required: true
-        style: form
-        explode: true
-        schema:
-          type: array
-          items:
-            type: string
-            default: available
-            enum:
-            - available
-            - pending
-            - sold
-      responses:
-        200:
-          description: successful operation
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Book'
-        400:
-          description: Invalid status value
-          content: {}
-      x-openapi-router-controller: swagger_server.controllers.book_controller
   /book/{bookId}:
     get:
       tags:
@@ -219,7 +183,7 @@ components:
           example: 9789630793292
         name:
           type: string
-          example: George Orwell
+          example: Animal farm
         price:
           type: number
           format: double
@@ -235,10 +199,10 @@ components:
       example:
         id: 0
         isbn: 9789630793292
-        name: George Orwell
+        name: Animal farm
         price: 7.19
         author:
-          name: name
+          name: George Orwell
           id: 6
         status: available
     body:
